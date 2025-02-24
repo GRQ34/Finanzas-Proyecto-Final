@@ -34,8 +34,8 @@ for subset in combinations(adj_close.columns, 4):
     corr_submatrix = correlation_matrix[np.ix_(indices, indices)]
 
     # Filtrar combinaciones con correlación > 0.5
-    if np.any(np.triu(corr_submatrix, k=1) > 0.5):
-        continue  # Saltar esta combinación
+    if np.any(np.abs(np.triu(corr_submatrix, k=1)) > 0.5):
+        continue
 
     # Extraer datos de la combinación aceptable
     RE_sub = RE[indices]
